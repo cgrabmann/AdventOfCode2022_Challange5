@@ -1,6 +1,5 @@
 package dev.grabmann.adventofcode.challange5
 
-import java.util.EmptyStackException
 import kotlin.io.path.Path
 import kotlin.io.path.readLines
 
@@ -52,17 +51,7 @@ fun parseStorage(lines: List<String>): Storage {
 }
 
 fun Storage.applyMove(move: Move) {
-    repeat(move.count) {
-        val item = try {
-            this.remove(move.from)
-        } catch (e: EmptyStackException) {
-            null
-        }
-
-        if (item != null) {
-            this.store(item, move.to)
-        }
-    }
+    (0 until move.count).map { this.remove(move.from) }.reversed().forEach { this.store(it, move.to) }
 }
 
 val Storage.allTopItems get() = (0 until rowCount).map { top(it) }
