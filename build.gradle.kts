@@ -2,6 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "1.7.20"
+    application
 }
 
 group = "dev.grabmann.adventofcode.challange5"
@@ -21,4 +22,8 @@ tasks.test {
 
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
+}
+
+application {
+    mainClass.set("dev.grabmann.adventofcode.challange5.MainKt")
 }
